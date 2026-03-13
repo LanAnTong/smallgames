@@ -66,6 +66,7 @@ h1 {
     align-items: center;
     margin-bottom: 20px;
     padding: 0 20px;
+    position: relative;
 }
 
 .game-controls {
@@ -81,6 +82,35 @@ h1 {
     font-size: 1.5em;
     color: #667eea;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 历史记录图标按钮 */
+.history-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.history-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.5);
+}
+
+.history-icon:active {
+    transform: scale(0.95);
 }
 
 #startBtn {
@@ -274,22 +304,97 @@ h1 {
     border: 2px solid #e9ecef;
 }
 
-.history-section h2 {
+/* 历史记录弹窗 */
+.history-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.history-modal.show {
+    display: flex;
+}
+
+.history-modal-content {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 500px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.history-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 2px solid #f0f0f0;
+    flex-shrink: 0;
+}
+
+.history-modal-header h2 {
     color: #333;
     font-size: 1.5em;
-    margin-bottom: 15px;
+    margin: 0;
+}
+
+.history-modal-close {
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.history-modal-close:hover {
+    color: #666;
+}
+
+.history-modal-body {
+    padding: 20px 25px;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.history-modal-footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px 25px;
+    border-top: 2px solid #f0f0f0;
+    flex-shrink: 0;
 }
 
 .clear-btn {
     background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
     color: white;
     border: none;
-    padding: 8px 20px;
-    font-size: 0.9em;
+    padding: 10px 25px;
+    font-size: 0.95em;
     border-radius: 20px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    margin-bottom: 15px;
 }
 
 .clear-btn:hover {
@@ -302,8 +407,6 @@ h1 {
 }
 
 .history-list {
-    max-height: 200px;
-    overflow-y: auto;
     text-align: left;
 }
 
@@ -339,6 +442,9 @@ h1 {
     border-left: 4px solid #667eea;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .history-item:hover {

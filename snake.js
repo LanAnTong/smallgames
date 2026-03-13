@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const historyModeTitle = document.getElementById('historyModeTitle');
     const modeBtns = document.querySelectorAll('.mode-btn');
 
+    // 历史记录弹窗元素
+    const historyIcon = document.getElementById('historyIcon');
+    const historyModal = document.getElementById('historyModal');
+    const historyModalClose = document.getElementById('historyModalClose');
+
     // 弹出框元素
     const modalOverlay = document.getElementById('modalOverlay');
     const modalTitle = document.getElementById('modalTitle');
@@ -570,6 +575,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 初始化按钮状态
     showGameControls('idle');
+
+    // 历史记录弹窗功能
+    function showHistoryModal() {
+        displayHistory();
+        historyModal.classList.add('show');
+    }
+
+    function hideHistoryModal() {
+        historyModal.classList.remove('show');
+    }
+
+    // 绑定历史记录弹窗事件
+    historyIcon.addEventListener('click', showHistoryModal);
+    historyModalClose.addEventListener('click', hideHistoryModal);
+    historyModal.addEventListener('click', (e) => {
+        if (e.target === historyModal) {
+            hideHistoryModal();
+        }
+    });
 
     // 自定义弹出框函数
     let modalResolve = null;

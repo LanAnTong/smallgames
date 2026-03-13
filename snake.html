@@ -15,6 +15,7 @@
         </div>
         <div class="game-info">
             <div class="score">分数: <span id="score">0</span></div>
+            <button class="history-icon" id="historyIcon" title="查看历史记录">📊</button>
             <div class="game-controls">
                 <button id="startBtn">开始游戏</button>
                 <button id="pauseBtn" class="hidden">暂停</button>
@@ -38,11 +39,21 @@
                 <button class="control-btn" id="rightBtn">▶</button>
             </div>
         </div>
-        <div class="history-section">
-            <h2>历史分数 - <span id="historyModeTitle">经典模式</span></h2>
-            <button id="clearHistory" class="clear-btn">清除历史</button>
-            <div class="history-list" id="historyList">
-                <p class="no-history">暂无历史记录</p>
+        <!-- 历史记录弹窗 -->
+        <div class="history-modal" id="historyModal">
+            <div class="history-modal-content">
+                <div class="history-modal-header">
+                    <h2>历史分数 - <span id="historyModeTitle">经典模式</span></h2>
+                    <button class="history-modal-close" id="historyModalClose">&times;</button>
+                </div>
+                <div class="history-modal-body">
+                    <div class="history-list" id="historyList">
+                        <p class="no-history">暂无历史记录</p>
+                    </div>
+                </div>
+                <div class="history-modal-footer">
+                    <button id="clearHistory" class="clear-btn">清除历史</button>
+                </div>
             </div>
         </div>
     </div>
