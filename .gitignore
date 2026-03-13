@@ -1,0 +1,24 @@
+# IDE 配置文件
+.arts/
+.codeartsdoer/
+.vscode/
+.idea/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.log
+
+# Node.js (如果将来使用)
+node_modules/
+package-lock.json
+
+# Python (如果将来使用)
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
