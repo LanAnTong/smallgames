@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isGameRunning = false;
     let isPaused = false;
     let gameMode = 'classic'; // 'classic' 或 'loop'
+    let canChangeDirection = true; // 防止在同一帧内多次改变方向
+    let bigFoodCycle = 0; // 大食物生成循环计数器
 
     function initGame() {
         snake = [
@@ -141,6 +143,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function moveSnake() {
+        // 允许改变方向
+        canChangeDirection = true;
+
         const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
         // 根据游戏模式处理边界
@@ -197,9 +202,17 @@ document.addEventListener('DOMContentLoaded', function() {
             snake.push({ ...snake[snake.length - 1] });
         }
 
-        // 随机生成大食物（30%概率）
-        if (!bigFood && Math.random() < 0.3) {
-            generateBigFood();
+        // 随机生成大食物（在1/3的时间内出现）
+        if (!bigFood) {
+            bigFoodCycle++;
+            // 每15帧（约2.25秒）检查一次是否生成大食物
+            if (bigFoodCycle >= 15) {
+                bigFoodCycle = 0;
+                // 1/2的概率生成大食物
+                if (Math.random() < 0.5) {
+                    generateBigFood();
+                }
+            }
         }
 
         if (!ateFood) {
@@ -295,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 键盘控制
     document.addEventListener('keydown', (e) => {
-        if (!isGameRunning) return;
+        if (!isGameRunning || !canChangeDirection) return;
 
         const key = e.key.toLowerCase();
 
@@ -304,24 +317,28 @@ document.addEventListener('DOMContentLoaded', function() {
             if (dy !== 1) {
                 dx = 0;
                 dy = -1;
+                canChangeDirection = false;
             }
             e.preventDefault();
         } else if (key === 'arrowdown' || key === 's') {
             if (dy !== -1) {
                 dx = 0;
                 dy = 1;
+                canChangeDirection = false;
             }
             e.preventDefault();
         } else if (key === 'arrowleft' || key === 'a') {
             if (dx !== 1) {
                 dx = -1;
                 dy = 0;
+                canChangeDirection = false;
             }
             e.preventDefault();
         } else if (key === 'arrowright' || key === 'd') {
             if (dx !== -1) {
                 dx = 1;
                 dy = 0;
+                canChangeDirection = false;
             }
             e.preventDefault();
         }
@@ -329,31 +346,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 触摸按钮控制
     function changeDirection(direction) {
-        if (!isGameRunning) return;
+        if (!isGameRunning || !canChangeDirection) return;
 
         switch (direction) {
             case 'up':
                 if (dy !== 1) {
                     dx = 0;
                     dy = -1;
+                    canChangeDirection = false;
                 }
                 break;
             case 'down':
                 if (dy !== -1) {
                     dx = 0;
                     dy = 1;
+                    canChangeDirection = false;
                 }
                 break;
             case 'left':
                 if (dx !== 1) {
                     dx = -1;
                     dy = 0;
+                    canChangeDirection = false;
                 }
                 break;
             case 'right':
                 if (dx !== -1) {
                     dx = 1;
                     dy = 0;
+                    canChangeDirection = false;
                 }
                 break;
         }
