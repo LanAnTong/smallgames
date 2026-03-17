@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>五子棋游戏</title>
+    <link rel="stylesheet" href="wuziqi.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← 返回首页</a>
+        <h1>五子棋游戏</h1>
+        <div class="game-info">
+            <div class="mode-selector">
+                <button class="mode-btn" data-mode="pvp">双人对战</button>
+                <button class="mode-btn active" data-mode="easy">简单AI</button>
+                <button class="mode-btn" data-mode="hard">困难AI</button>
+                <button class="mode-btn" data-mode="hell">地狱AI</button>
+            </div>
+            <div class="current-player">当前: <span id="currentPlayer">⚫ 黑棋</span></div>
+            <div class="game-controls">
+                <button id="startBtn">开始游戏</button>
+                <button id="restartBtn" class="hidden">重新开始</button>
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="instructions">
+            <p>电脑: 使用鼠标点击下棋</p>
+            <p>手机: 使用触摸点击下棋</p>
+            <p id="modeDescription">简单模式：AI随机下棋，适合新手</p>
+        </div>
+    </div>
+    <script src="wuziqi.js"></script>
+</body>
+</html>

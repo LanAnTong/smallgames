@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>2048游戏</title>
+    <link rel="stylesheet" href="2048.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← 返回首页</a>
+        <h1>2048游戏</h1>
+        <div class="game-info">
+            <div class="score">分数: <span id="score">0</span></div>
+            <div class="best">最高分: <span id="best">0</span></div>
+            <div class="game-controls">
+                <button id="startBtn">开始游戏</button>
+                <button id="restartBtn" class="hidden">重新开始</button>
+            </div>
+        </div>
+        <div id="gameBoard"></div>
+        <div class="instructions">
+            <p>电脑: 使用方向键或WASD控制</p>
+            <p>手机: 使用下方方向按钮控制</p>
+        </div>
+        <div class="touch-controls">
+            <div class="control-row">
+                <button class="control-btn" id="upBtn">▲</button>
+            </div>
+            <div class="control-row">
+                <button class="control-btn" id="leftBtn">◀</button>
+                <button class="control-btn" id="downBtn">▼</button>
+                <button class="control-btn" id="rightBtn">▶</button>
+            </div>
+        </div>
+    </div>
+    <script src="2048.js"></script>
+</body>
+</html>
